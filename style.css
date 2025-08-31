@@ -1,0 +1,166 @@
+:root {
+  /* ライトモードの色定義 */
+  --bg-color: #f4f7f9;
+  --text-color: #333;
+  --panel-bg-color: #ffffff;
+  --panel-border-color: #f0f0f0;
+  --subtle-text-color: #7f8c8d;
+  --accent-color: #3498db;
+  --timeline-day-bg: #fff;
+  --timeline-night-bg: #fafafa;
+  --timeline-border-color: #eee;
+  --selected-bg-color: #a7d9f7;
+}
+
+body.dark-mode {
+  /* ダークモードの色定義 */
+  --bg-color: #2c3e50;
+  --text-color: #ecf0f1;
+  --panel-bg-color: #34495e;
+  --panel-border-color: #46627f;
+  --subtle-text-color: #95a5a6;
+  --accent-color: #5dade2;
+  --timeline-day-bg: #4a6581;
+  --timeline-night-bg: #3f566e;
+  --timeline-border-color: #4a6581;
+  --selected-bg-color: #5dade2;
+}
+
+body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', 'Noto Sans CJK JP', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+header { text-align: center; margin-bottom: 20px; }
+h1 { 
+    color: var(--text-color); 
+    margin-bottom: 5px; 
+    font-family: 'Hiragino Maru Gothic ProN', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', 'Noto Sans CJK JP', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+#current-home-time-display {
+    font-family: 'Courier New', monospace;
+    color: #e74c3c;
+    font-weight: bold;
+    background-color: var(--panel-bg-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    min-height: 1.2em;
+}
+
+.controls { margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; }
+#timezone-select, #add-button, #reset-time-button, #date-picker, #dark-mode-toggle { 
+    font-size: 16px; padding: 8px 12px; border: 1px solid var(--panel-border-color); 
+    border-radius: 5px; background-color: var(--panel-bg-color); color: var(--text-color);
+}
+#add-button, #reset-time-button { background-color: var(--accent-color); color: white; border: none; cursor: pointer; }
+#reset-time-button { background-color: #2ecc71; }
+#dark-mode-toggle { 
+    min-width: 60px; 
+    height: 40px;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background: linear-gradient(45deg, #f1c40f, #f39c12);
+    border: 2px solid #f39c12;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+body.dark-mode #dark-mode-toggle {
+    background: linear-gradient(45deg, #34495e, #2c3e50);
+    border-color: #5dade2;
+    color: #ecf0f1;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+#dark-mode-toggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+body.dark-mode #dark-mode-toggle:hover {
+    box-shadow: 0 4px 8px rgba(93, 173, 226, 0.3);
+}
+
+#clocks-container {
+    width: 100%; max-width: 95vw; position: relative;
+    display: flex; flex-direction: column; gap: 10px;
+}
+
+.clock-row {
+    background-color: var(--panel-bg-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 8px; border: 2px solid transparent; display: grid;
+    grid-template-columns: 280px 1fr; min-height: 80px; transition: background-color 0.3s;
+}
+.clock-row.is-home { border-color: #f39c12; }
+
+.left-panel {
+    padding: 15px; display: flex; flex-direction: column;
+    justify-content: center; gap: 8px; border-right: 1px solid var(--panel-border-color);
+}
+.left-panel-top { display: flex; justify-content: space-between; align-items: center; }
+.city-name { 
+    font-size: 18px; 
+    font-weight: 600; 
+    font-family: 'Hiragino Maru Gothic ProN', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', 'Noto Sans CJK JP', sans-serif;
+    letter-spacing: 0.3px;
+}
+.clock-actions { display: flex; align-items: center; }
+.clock-actions button { background: none; border: none; font-size: 16px; cursor: pointer; color: #aaa; padding: 2px; }
+.clock-actions button.home-button.is-home { color: #f39c12; }
+
+.time-range-display { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.time-group { display: flex; align-items: baseline; gap: 8px; }
+.display-time { font-size: 32px; font-family: 'Courier New', Courier, monospace; font-weight: 500; color: var(--text-color); }
+.time-separator { font-size: 20px; color: #aaa; }
+.date-label { font-size: 13px; color: var(--subtle-text-color); }
+
+.timeline-scroll-wrapper { overflow: hidden; cursor: grab; position: relative; }
+.timeline-scroll-wrapper:active { cursor: grabbing; }
+
+.timeline { display: flex; width: 100%; height: 100%; }
+.hour-block {
+    box-sizing: border-box; 
+    flex: 1 0 auto;
+    text-align: center; font-size: 12px; color: var(--subtle-text-color); border-left: 1px solid var(--timeline-border-color);
+    display: flex; flex-direction: column; justify-content: center; gap: 4px;
+    -webkit-user-select: none; user-select: none; transition: background-color 0.3s;
+}
+.hour-block:first-child { border-left: none; }
+.hour-block.is-day { background-color: var(--timeline-day-bg); }
+.hour-block.is-night { background-color: var(--timeline-night-bg); }
+.hour-block.is-selected-range { background-color: var(--selected-bg-color); color: var(--text-color); font-weight: bold; }
+
+#time-indicator-frame {
+    position: absolute; top: 0; left: 0; width: 0; height: 100%;
+    border: 2px solid #e74c3c; background-color: rgba(231, 76, 60, 0.1);
+    border-radius: 8px; box-sizing: border-box; z-index: 10;
+    pointer-events: none; transition: left 0.05s linear, width 0.05s linear;
+    display: none;
+}
+
+.timeline-nav-btn {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 20;
+    background-color: rgba(255, 255, 255, 0.8); border: 1px solid #ccc;
+    border-radius: 50%; width: 40px; height: 40px; font-size: 24px;
+    font-weight: bold; color: #555; cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); opacity: 0.3; transition: opacity 0.3s;
+}
+body.dark-mode .timeline-nav-btn { background-color: rgba(74, 101, 129, 0.8); color: #fff; border-color: #2c3e50;}
+#clocks-container:hover .timeline-nav-btn { opacity: 1; }
+#scroll-left-btn { left: 5px; }
+#scroll-right-btn { right: 5px; }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時差計算アプリ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>時差計算アプリ</h1>
+        <div id="current-home-time-display"></div>
+    </header>
+
+    <main>
+        <div class="controls">
+            <select id="timezone-select" aria-label="タイムゾーンを選択"></select>
+            <button id="add-button">都市を追加</button>
+            <input type="date" id="date-picker" title="日付を選択">
+            <button id="reset-time-button">現在にリセット</button>
+            <button id="dark-mode-toggle" title="ダークモード切り替え">🌙</button>
+        </div>
+
+        <div id="clocks-container">
+            <div id="time-indicator-frame"></div>
+            <button id="scroll-left-btn" class="timeline-nav-btn" title="前の日へ">‹</button>
+            <button id="scroll-right-btn" class="timeline-nav-btn" title="次の日へ">›</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
