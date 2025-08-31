@@ -1,11 +1,13 @@
 # 🕒 Time Difference Calculator App
 
 ## 🚀 Deployed Link:
+https://akimi-yano.github.io/time-difference-calculator/
 
 ## 🌱 Summary:
 Easily calculate time differences between cities around the world.
 Set your Home City, choose a time range of interest, and instantly compare times across locations.
 The app also comes with a dark mode for a comfortable viewing experience.
+Ad free & safe environment :)
 
 ## ✨ Features:
 - 🌍 Add Cities: Search and add cities from around the world.
